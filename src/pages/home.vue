@@ -7,8 +7,8 @@
             <home-banner/>
             <!-- scrollNews -->
             <div v-show="isSmallRoutineStatus" class="scrollBox">
-                <div class="text">教育<br/>资讯</div>
-                <scroll-news class="scrollNews"/>
+                <journnalism />
+                <!-- <scroll-news class="scrollNews"/> -->
             </div>
             <!-- list -->
             <div class="bookList">
@@ -77,7 +77,8 @@
 
 <script>
 import homeBanner from '@/components/homePage/banner';
-import scrollNews from '@/components/homePage/scrollNews';
+// import scrollNews from '@/components/homePage/scrollNews';
+import journnalism from '@/components/homePage/journnalism';
 import search from '@/components/homePage/search'
 import wxShareInit from '@/assets/js/weChatShare.js';
 import {getBookPopList,getCourseList} from '@/api/api'
@@ -103,8 +104,9 @@ export default {
     },
     components:{
         homeBanner,    
-        scrollNews,
-        search
+        // scrollNews,
+        search,
+        journnalism
     },
     methods:{
         toDetail(id){  
@@ -365,27 +367,27 @@ export default {
         // scrollNews
         .scrollBox{
             margin-top: 25px;
-            display: flex;
+            // display: flex;
             align-items: center;
             // box-shadow: 0 2px 10px #e4e4e4;
             box-shadow: 0 2px 10px #dde9f1;
             border-radius: 4px;
-            padding: 2px 10px 2px 20px;
+            padding: 5px 10px 5px 20px;
             .text{
-                font-size: 19px;
-                font-weight: 700;
-                letter-spacing: 6px;
-                position: relative;
-                left: -7px;
+                // font-size: 19px;
+                // font-weight: 700;
+                // letter-spacing: 6px;
+                // position: relative;
+                // left: -7px;
                 &::after{
-                    display: block;
-                    content:"";
-                    width: 1px;
-                    height: 50px;
-                    background-color: #eee;
-                    left: 53px;
-                    top: 0;
-                    position: absolute;
+                    // display: block;
+                    // content:"";
+                    // width: 1px;
+                    // height: 50px;
+                    // background-color: #eee;
+                    // left: 53px;
+                    // top: 0;
+                    // position: absolute;
                 }
             }
             .scrollNews{
