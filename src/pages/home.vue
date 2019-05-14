@@ -6,10 +6,11 @@
             <!-- banner -->
             <home-banner/>
             <!-- scrollNews -->
-            <div v-show="isSmallRoutineStatus" class="scrollBox">
+
+            <journnalism />
+            <!-- <div v-show="isSmallRoutineStatus" class="scrollBox">
                 <journnalism />
-                <!-- <scroll-news class="scrollNews"/> -->
-            </div>
+            </div> -->
             <!-- list -->
             <div class="bookList">
                 <div class="bookListContent">
@@ -370,7 +371,7 @@ export default {
             // display: flex;
             align-items: center;
             // box-shadow: 0 2px 10px #e4e4e4;
-            box-shadow: 0 2px 10px #dde9f1;
+            box-shadow: 0 2px 10px #d2d4d6;
             border-radius: 4px;
             padding: 5px 10px 5px 20px;
             .text{
