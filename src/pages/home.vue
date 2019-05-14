@@ -83,6 +83,7 @@ import wxShareInit from '@/assets/js/weChatShare.js';
 import {getBookPopList,getCourseList} from '@/api/api'
 import {isSmallRoutine} from '../assets/js/common.js'
 export default {
+    
     data() {
         return {
             courseList:[],
