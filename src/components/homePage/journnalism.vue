@@ -45,7 +45,7 @@ export default {
         width: 48%;
         height: 65px;
         margin-top: 16px;
-        padding-left: 10px;
+        padding-left: 12px;
         /* border: 1px solid #cccccc;
         border-radius: 10px; */
        display: flex;
