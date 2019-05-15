@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import { store } from '@/store/store'
 
 //阿里矢量图
-import './assets/icon/iconfont.css'
+//import './assets/icon/iconfont.css'
 Vue.config.productionTip = false
 
 Vue.prototype.axios = axios
