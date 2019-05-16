@@ -21,7 +21,7 @@
                     <p class="iconBox text-center"><span class="iconfont icon-gerenzhongxin1"></span></p>
                     <p class="iconName text-center">我的</p>
                 </router-link>
-            </ul>
+            </ul> 
         </div>
     </div>
 </template>

@@ -1,15 +1,15 @@
 
 <template>
-    <div class="min">
-        <div class="minleft" @click="btnsp">
+    <div class="meun" >
+        <div class="meun-video" @click="btnvideo">
              <span class="iconfont icon-shipin1"></span>
              <ul>
                  <li>精品课程</li>
                  <li>市场招生 升学指导</li>             
              </ul>
         </div>
-        <div class="minright">
-            <span class="iconfont icon-shu1" @click="btnsj"></span>
+        <div class="meun-book" @click="btnbook">
+            <span class="iconfont icon-shu1" ></span>
              <ul>
                  <li>教育书籍</li>
                  <li>校长推荐 教育图书</li>
@@ -21,12 +21,12 @@
 <script>
 export default {
     methods: {
-        btnsp:function() {
+        btnvideo:function() {
             this.$router.push({
                 path:"/course"
             })
         },
-        btnsj:function () {
+        btnbook:function () {
             this.$router.push({
                 path:"/list"
             })
@@ -36,12 +36,12 @@ export default {
 </script>
 
 <style scoped>
-    .min{
+    .meun{
         display: flex;
         justify-content: space-between;
         margin-top: 5px;
     }
-    .minleft,.minright{
+    .meun-video,.meun-book{
         width: 48%;
         height: 65px;
         margin-top: 16px;

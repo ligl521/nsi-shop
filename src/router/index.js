@@ -38,7 +38,7 @@ import offlineCoursePage from '@/components/coursePage/offlineCourse'
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
+    routes: [{ 
             path: '/',
             component: HomePage
         },
@@ -69,7 +69,7 @@ export default new Router({
                 component: confirmOrderCom
             }, {
                 path: "/orderState/success",
-                component: successOrderCom
+                component: successOrderCom 
             }]
         },
         {

@@ -22,11 +22,11 @@
             <div class="row descriptionBox">
                 <div class="col-xs-12">
                     <div class="descBox">
-                        <h3 class="title">描述</h3>
+                        <!-- <h3 class="title">描述</h3>
                         <p class="descInfo">{{book.goodsDescribe}}</p>
                         <p class="labelBox">
                             <span class="labelDesc">{{book.goodsLabel}}</span>
-                        </p>
+                        </p> -->
                     </div>
                 </div>
             </div>

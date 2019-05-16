@@ -1,7 +1,7 @@
 <template>
     <div class="courseList-com" ref="list">
         <!-- <scroller :on-infinite="infinite" ref="myscroller" class="scroller-com"> -->
-            <div class="container-fluid" style="padding-bottom:15px;margin-top:15px;" v-loading="loading">
+            <div class="container-fluid" style="padding-bottom:50px;margin-top:15px;" v-loading="loading">
                 <!-- search -->
                 <!-- searchList -->
                 <div class="row bookList" v-for="(book,index) in bookList" :key="index" @click="toDetail(book)">
@@ -116,6 +116,14 @@ export default {
 </script>
 
 <style lang="scss">
+    .el-loading-spinner {
+        /* top: 50%; */
+        /* margin-top: -21px; */
+        width: 100%;
+        text-align: center;
+        position: flex;
+        top: 200px;
+    }
     .courseList-com{
                 // padding-bottom: 45px;
         ._v-content{

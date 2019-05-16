@@ -7,7 +7,7 @@
             <home-banner/>
             <!-- scrollNews -->
 
-            <journnalism />
+            <journnalism v-show="isSmallRoutineStatus" />
             <!-- <div v-show="isSmallRoutineStatus" class="scrollBox">
                 <journnalism />
             </div> -->

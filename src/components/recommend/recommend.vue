@@ -9,7 +9,6 @@
                     </div>
                     <p class="name">{{book.goodsName}}</p>
                 </div>
-                
             </div>
         </div>
 </div>
@@ -35,7 +34,10 @@ export default {
            
             let href='https://www.xinxueshuo.cn/nsi-shop/dist/index.html#/detailPage/'+id
             window.location.href=href
-            localStorage.setItem("isShare",false)
+            localStorage.setItem("isShare",false);
+
+            document.body.scrollTop = 0 //点击跳转顶部
+            document.documentElement.scrollTop = 0
         },
         getData(){
             let that=this
@@ -116,7 +118,7 @@ export default {
         }
         .bookList{
             
-            width: 33.333%;
+            width: 33%;
             padding:15px 15px 0 15px;
             .name{
                 padding:10px 0px 0 0;
