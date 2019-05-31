@@ -49,7 +49,7 @@
             </div>
         </div>
         <service-detail></service-detail>
-        
+
     </div>
 </template>
 
@@ -91,7 +91,7 @@ export default {
             }).then((res)=>{
                 this.book=res.data.data
                 document.title=this.book.goodsName
-                // console.log(this.book)
+                console.log(this.book)
                 // document.title=this.detail.title
                 // 微信分享
                 this.wxShareInfo.title="国际教育研究院 | "+this.book.goodsName
@@ -157,8 +157,8 @@ export default {
         }),
         createCid(){
             if(localStorage.getItem('cartId')){}else{
-                localStorage.removeItem('vuex')  
-                // localStorage.setItem('vuex','')          
+                localStorage.removeItem('vuex')
+                // localStorage.setItem('vuex','')
                 createCartId({
                     openId:localStorage.getItem('openId')
                     // openId:'oCUylv0A1A2hO9JNaCNhVom8guLE'
@@ -180,7 +180,7 @@ export default {
     },
     mounted(){
         localStorage.setItem('courseId',this.$route.params.id)
-        getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'))
+        //getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'))
     },
     destroyed(){
         document.title="国际教育研究院"
@@ -326,7 +326,7 @@ export default {
                 justify-content: space-around;
                 padding-right: 10px;
                 .cartLogo{
-                    display: flex; 
+                    display: flex;
                     align-items: center;
                     justify-content: center;
                     flex-direction: column;
@@ -367,7 +367,7 @@ export default {
                     background-color: #fe5c4f;
                 }
             }
-            
+
             .price{
                 font-size: 17px;
                 color: #fb2727;
@@ -392,7 +392,7 @@ export default {
                 background-color: #ffaaaa;
                 color: #fb2727;
             }
-           
+
         }
     }
 </style>

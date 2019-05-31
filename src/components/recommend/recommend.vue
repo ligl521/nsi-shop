@@ -9,11 +9,11 @@
                     </div>
                     <p class="name">{{book.goodsName}}</p>
                 </div>
+
             </div>
         </div>
 </div>
 </template>
-
 <script>
 import {recommmendBookOrCourse} from '../../api/api.js'
 export default {
@@ -30,8 +30,8 @@ export default {
         toDetail(id){
             // let routeData =this.$router.resolve({name:"detail",params:{id:id}})
             // window.location.href=routeData.href
-            //this.$router.push({path:'/detailPage/'+id}); 
-           
+            //this.$router.push({path:'/detailPage/'+id});
+
             let href='https://www.xinxueshuo.cn/nsi-shop/dist/index.html#/detailPage/'+id
             window.location.href=href
             localStorage.setItem("isShare",false);
@@ -72,7 +72,7 @@ export default {
       '$route' (to, from) {
             if(to.params.id!=from.params.id){
                 this.getData()
-                window.reload()
+                // window.reload()
             }
        }
     },
@@ -117,7 +117,7 @@ export default {
             padding-top: 70px;
         }
         .bookList{
-            
+
             width: 33%;
             padding:15px 15px 0 15px;
             .name{
@@ -130,7 +130,7 @@ export default {
                 max-height:61px;
                 overflow:hidden;
             }
-            
+
         }
         .infoBox{
             min-height: 155px;
@@ -152,7 +152,7 @@ export default {
                 // font-weight: 600;
                 font-family: -webkit-pictograph,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
-            
+
             .author{
                 font-size: 14px;
                 color: rgb(141, 141, 141);
@@ -173,3 +173,6 @@ export default {
         }
     }
 </style>
+
+
+
