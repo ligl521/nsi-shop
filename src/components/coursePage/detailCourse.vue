@@ -219,7 +219,7 @@ export default {
             })
         },
         handleScroll () {
-            
+
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
             // console.log(scrollTop)
             // console.log(this.$refs.coverContent.style.height)
@@ -276,7 +276,7 @@ export default {
             position: relative;
             .zindex9{
                 z-index: 9;
-            }  
+            }
             .play{
                 width: 100%;
                 position: relative;
@@ -358,7 +358,7 @@ export default {
         }
         .courseContent{
             border-top: 7px solid #f7f7f7;
-            
+
         }
         .back{
             position: absolute;

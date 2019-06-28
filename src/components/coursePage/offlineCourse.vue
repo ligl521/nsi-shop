@@ -269,7 +269,7 @@ export default {
             position: relative;
             .zindex9{
                 z-index: 9;
-            }  
+            }
             .play{
                 width: 100%;
                 position: relative;
@@ -353,7 +353,7 @@ export default {
             }
         }
         .courseContent{
-            
+
         }
         .back{
             position: absolute;

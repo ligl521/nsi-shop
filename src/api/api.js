@@ -46,7 +46,7 @@ export const wxPay = p => get('/Pay/WxPay_public.do', p)
 export const checkCoursePrivilege = p => get('/ClassUser/vierify_open.do', p)
 
 // 插入课程观看权限
-export const insertCoursePrivilege = p => get('/ClassUser/Course_User_Insert.do', p)
+export const insertCoursePrivilege = p => get('/ClassUser/shopCourse_User_Insert.do', p)
 
 // 检测邮箱是否注册
 export const checkEmailIsLogin = p => post('/user/UserMailCheck.do', p)
@@ -82,3 +82,5 @@ export const getCartList = p => get('/order/get_order_cart_list.do', p)
 export const createInvoice = p => post('/Invoice/ShopInvoiceCreate.do', p)
 // 推荐图书或书籍
 export const recommmendBookOrCourse = p => post('/ShopRecommend/getRecommend.do', p)
+// 报错
+export const apiError = p => post('/CommonApi/ErrorNotify.do', p)
