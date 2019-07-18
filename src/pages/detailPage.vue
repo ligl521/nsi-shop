@@ -180,7 +180,7 @@ export default {
     },
     mounted(){
         localStorage.setItem('courseId',this.$route.params.id)
-        //getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'))
+        getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'))
     },
     destroyed(){
         document.title="国际教育研究院"
