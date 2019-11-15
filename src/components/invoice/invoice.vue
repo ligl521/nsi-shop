@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import {createInvoice} from '@/api/api'
+import {createInvoice,getCheckInvoice} from '@/api/api'
 export default {
     data() {
         return {
@@ -92,36 +92,53 @@ export default {
                 let username=this.form.uname
                 let userordernum=this.form.orderNum
                 let managemoney=this.form.price
-
-                createInvoice({
-                    userinvoicename:userinvoicename,
-                    userinvoicenum:userinvoicenum,
-                    userbillingtype:userbillingtype,
-                    usermail:usermail,
-                    username:username,
-                    userordernum:userordernum,
-                    managemoney:managemoney
-                }).then(res=>{
-                    // console.log(res.data)
-                    if(res.code==0){
-                        this.$message({
-                            message: '申请成功，一个工作日电子发票将发送至您的邮箱，请注意查收',
-                            type: 'success'
-                        })
-                        history.go(-1)
-                    }else{
-                        this.$message({
-                            message: '网络错误，请稍后重试',
-                            type: 'error',
-                            duration:1500
-                        })
-                    }
+                getCheckInvoice({
+                  orderNo:this.form.orderNum
+                }).then(res =>{
+                  createInvoice({
+                      userinvoicename:userinvoicename,
+                      userinvoicenum:userinvoicenum,
+                      userbillingtype:userbillingtype,
+                      usermail:usermail,
+                      username:username,
+                      userordernum:userordernum,
+                      managemoney:managemoney
+                  }).then(res=>{
+                      console.log(res)
+                      if(res.code==0){
+                          this.$message({
+                              message: '申请成功，一个工作日电子发票将发送至您的邮箱，请注意查收',
+                              type: 'success'
+                          })
+                          history.go(-1)
+                      }else{
+                          this.$message({
+                              message: '网络错误，请稍后重试',
+                              type: 'error',
+                              duration:1500
+                          })
+                      }
+                  })
                 })
             })
         }
     },
     mounted(){
-        this.form.orderNum=localStorage.getItem('orderNo')
+        this.form.orderNum=156666666;
+        getCheckInvoice({
+          orderNo:this.form.orderNum
+        }).then(res => {
+          if(res.code == "1"){
+            this.$message({
+              message: '您也提交发票申请,请耐心等候',
+              type: 'error',
+              duration:3000
+            })
+            this.$router.push('/orderState/confirm');
+          }
+          console.log(res)
+        })
+        // this.form.orderNum=localStorage.getItem('orderNo')
         this.form.price=localStorage.getItem('total_price')
         this.$refs.bg.style.minHeight=(window.innerHeight-60)+"px"
     }
