@@ -33,6 +33,7 @@
         </div>
         <recommend></recommend>
         <div class="content" v-html="book.goodsInfo"></div>
+        <div class="shoppingHints">-可提供发票  七天无理由退货-</div>
         <div class="buyBox">
             <!-- <span class="buyBtn price">售价：<span>￥{{book.goodsPrice}}.00</span><em class="free">免运费</em></span> -->
             <div class="cartBox">
@@ -393,6 +394,11 @@ export default {
                 color: #fb2727;
             }
 
+        }
+        .shoppingHints{
+          text-align: center;
+          color: #aaa;
+          padding-bottom: 40px;
         }
     }
 </style>

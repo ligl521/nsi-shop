@@ -124,7 +124,7 @@ export default {
         }
     },
     mounted(){
-        this.form.orderNum=156666666;
+      this.form.orderNum=localStorage.getItem('orderNo')
         getCheckInvoice({
           orderNo:this.form.orderNum
         }).then(res => {
@@ -138,7 +138,6 @@ export default {
           }
           console.log(res)
         })
-        // this.form.orderNum=localStorage.getItem('orderNo')
         this.form.price=localStorage.getItem('total_price')
         this.$refs.bg.style.minHeight=(window.innerHeight-60)+"px"
     }
