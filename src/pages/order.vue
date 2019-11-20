@@ -36,7 +36,7 @@
         <div class="message">
             <p>买家留言：<input class="txt" type="text" placeholder="填写留言" ref="buyerMessage"></p>
         </div>
-        <div class="shoppingHints">提交订单后可申请电子发票</div>
+        <div class="shoppingHints">提交订单后可申请电子发票<br/>图书商品不支持退款</div>
         <!-- 购买btn -->
         <div class="buyBtnBox">
             <div>合计金额：<span class="rmb">￥</span><span class="totalPrice">{{totalPrice}}.00</span></div>
@@ -227,7 +227,7 @@ export default {
         })
     },
     mounted(){
-        getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2forder')
+        // getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2forder')
         this.countPrice()
     }
 }
