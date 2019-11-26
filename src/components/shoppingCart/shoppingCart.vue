@@ -26,7 +26,7 @@
         </div>
         <!-- list -->
         <div class="itemBox">
-            <div class="goodItem" v-for="(v,i) in goodsList">
+            <div class="goodItem" v-for="(v,i) in goodsList" :key="i">
                 <div class="imgBox">
                     <img :src="v.goodsImg" alt="" class="img-responsive">
                 </div>
@@ -45,7 +45,7 @@
                 <span class="iconfont icon-guanbi del" @click="del(i)"></span>
             </div>
         </div>
-        <div class="shoppingHints ">提交订单后可申请电子发票</div>
+        <div class="shoppingHints ">提交订单后可申请电子发票<br/>图书商品不支持退款</div>
         <div class="totalBox" v-if="goodsLength!=0">
             <div class="totalPrice">
                 合计:<span>￥{{formatNum(totalPrice)}}</span>

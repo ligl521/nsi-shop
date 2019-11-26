@@ -26,7 +26,7 @@
                     </div>
                 </div>
                  <div v-show="isSmallRoutineStatus" class="bookListContent">
-                    <h4 class="title">精品课程</h4>    
+                    <h4 class="title">精品课程</h4>
                     <div class="courseContentRow" v-for="(item,index) in courseList" :key="index"  @click="toCourseDetail(item.listId)">
                         <div class="row">
                             <div class="col-xs-4">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="bookListContent">
-                    <h4 class="title">主编推荐</h4>    
+                    <h4 class="title">主编推荐</h4>
                     <div class="bookContentRow" v-for="(item,index) in bookCommandList" :key="index"  @click="toDetail(item.id)">
                         <div class="row">
                             <div class="col-xs-4">
@@ -85,7 +85,7 @@ import wxShareInit from '@/assets/js/weChatShare.js';
 import {getBookPopList,getCourseList} from '@/api/api'
 import {isSmallRoutine} from '../assets/js/common.js'
 export default {
-    
+
     data() {
         return {
             courseList:[],
@@ -104,13 +104,13 @@ export default {
         }
     },
     components:{
-        homeBanner,    
+        homeBanner,
         // scrollNews,
         search,
         journnalism
     },
     methods:{
-        toDetail(id){  
+        toDetail(id){
             // let routeData =this.$router.resolve({name:"detail",params:{id:id}})
             // window.location.href=routeData.href
             let href='https://www.xinxueshuo.cn/nsi-shop/dist/index.html#/detailPage/'+id
@@ -122,7 +122,7 @@ export default {
             // window.location.href=routeData.href
             let href='https://www.xinxueshuo.cn/nsi-shop/dist/index.html#/detailCourse/courseInfo/'+listId
             window.location.href=href
-        },             
+        },
         courseIndex(){
             getCourseList({
                 type:'新学说书籍',
@@ -132,7 +132,7 @@ export default {
             }).then((res)=>{
                 this.courseList=res.data.list.slice(0,2)
             })
-        },   
+        },
         bookPop(){
             getBookPopList({
                 'type':'ShopHomeTop'
@@ -264,6 +264,7 @@ export default {
                 margin-bottom: 10px;
             }
             .bookName{
+                padding: 2px 0 0 2px;
                 font-weight: 600;
                 font-size: 13px;
                 color: #333;
@@ -272,8 +273,8 @@ export default {
                 display: -webkit-box;
                 // -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;
-                min-height: 27px;
-                max-height: 27px;
+                min-height: 29px;
+                max-height: 29px;
                 margin: 6px 0;
             }
             .bookAuthor{

@@ -18,15 +18,35 @@ export default {
     },
     data() {
       return {
+        bookDepot:"https://www.xinxueshuo.cn/nsi-shop/dist/index.html/?from=singlemessage&isappinstalled=0#/list",
         wxShareInfo:{
                 title:"新学说 | 国际教育研究院",
                 imgUrl:"https://data.xinxueshuo.cn/upImage/upInstitutionImg/100062/100062-logo.jpg",
-                href:'https://www.xinxueshuo.cn/nsi-shop/dist/index.html',
+                href:"",
                 desc:"国际教育研究院，一站式解决国际化学校人才职业培训和能力提升"
             }
       }
     },
     mounted(){
+      // this.bookDepot = window.location.href;
+      console.log(this.bookDepot.indexOf("?"))
+      console.log(this.bookDepot.substr(this.bookDepot.indexOf("?")-1,1))
+      let temporaryStr = this.bookDepot.indexOf("?")-1,
+          temporaryStrTwo = this.bookDepot.substr(temporaryStr,1);
+      if(temporaryStrTwo == "/"){
+        let reg = "html/";
+        this.bookDepot.replace(reg,"html")
+        console.log(this.bookDepot)
+      }
+      if(this.bookDepot.indexOf("?")!=-1){                        //判断是否存在参数
+        let reg = /[?&]([^=&#]+)=([^*#]*)/g;
+        // let reg = /(\?|#)/;
+        this.bookDepot = this.bookDepot.replace(reg, '');           //去除参数
+      }
+      this.wxShareInfo.href = this.bookDepot;
+      console.log(this.wxShareInfo.href )
+
+
       setTimeout(wxShareInit.wxReady(this.wxShareInfo),30)
       this.$refs.list.style.height=(window.innerHeight-45)+"px";
     }
