@@ -1,7 +1,8 @@
 <template>
+
     <div class="searchList-com" ref="list">
         <div class="container-fluid searchContainer">
-            <search/>
+          <search/>
         </div>
         <search-list/>
     </div>
@@ -18,8 +19,6 @@ export default {
     },
     data() {
       return {
-        bookDepot:"https://www.xinxueshuo.cn/nsi-shop/dist/index.html/?from=singlemessage&isappinstalled=0#/list",
-        // bookDepot:"https://www.xinxueshuo.cn/nsi-shop/dist/index.html?code=021R5bdD0pglzk2rR1dD00JddD0R5bdu&state=STATE#/course",
         wxShareInfo:{
                 title:"新学说 | 国际教育研究院",
                 imgUrl:"https://data.xinxueshuo.cn/upImage/upInstitutionImg/100062/100062-logo.jpg",
@@ -29,21 +28,15 @@ export default {
       }
     },
     mounted(){
-      // this.bookDepot = window.location.href;
-      console.log(this.bookDepot.indexOf("?"))
+      this.bookDepot = window.location.href;
       // console.log(this.bookDepot.substr(this.bookDepot.indexOf("?")-1,1))
       let temporaryStr = this.bookDepot.indexOf("?")-1,
           temporaryStrTwo = this.bookDepot.substr(temporaryStr,1);
       if(temporaryStrTwo == "/"){
-
-        var aa = this.bookDepot.match(/.html(\S*)/)[1].replace(/^[/]/,'');
-        var cc = this.bookDepot.match(/(\S*).html/)[0];
-        this.bookDepot = cc + aa;
-        console.log(this.bookDepot)
-        // var bb = aa.splice(0)
-        // let reg = //;
-        // this.bookDepot.replace(reg,'html')
-        // console.log(this.bookDepot)
+         console.log(this.bookDepot)
+        var temporaryThree = this.bookDepot.match(/.html(\S*)/)[1].replace(/^[/]/,'');
+        var temporaryFour = this.bookDepot.match(/(\S*).html/)[0];
+        this.bookDepot = temporaryFour + temporaryThree;
       }
       if(this.bookDepot.indexOf("?")!=-1){                        //判断是否存在参数
         let reg = /[?&]([^=&#]+)=([^*#]*)/g;
@@ -56,7 +49,8 @@ export default {
 
       setTimeout(wxShareInit.wxReady(this.wxShareInfo),30)
       this.$refs.list.style.height=(window.innerHeight-45)+"px";
-    }
+    },
+
 }
 </script>
 
