@@ -17,7 +17,7 @@ Vue.config.productionTip = false
 Vue.prototype.axios = axios
 
 // 李岩
-// axios.defaults.baseURL = "http://192.168.0.13:8080/nsi-1.0"
+// axios.defaults.baseURL = "http://192.168.0.103:8080/nsi-1.0"
 
 // 罗振
  //axios.defaults.baseURL = "http://192.168.0.7:8080/nsi-1.0"

@@ -9,6 +9,9 @@
                 <el-form-item label="实付金额">
                     <el-input v-model="form.price" :disabled="true"></el-input>
                 </el-form-item>
+                <el-form-item label="发票类型">
+                    <el-input v-model="form.typeselect" :disabled="true"></el-input>
+                </el-form-item>
                 <el-form-item label="发票抬头" prop="name">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
@@ -25,17 +28,6 @@
                     title="电子发票将会发送至该邮箱，请准确填写！"
                     type="info">
                 </el-alert> -->
-                <el-form-item label="发票类型" style="margin-bottom:15px;">
-                    <el-select v-model="form.typeselect" placeholder="请选择发票类型">
-                    <el-option label="咨询费" value="咨询费"></el-option>
-                    <el-option label="会议费" value="会议费"></el-option>
-                    <el-option label="会议服务费" value="会议服务费"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-alert style="width:75%;margin:0 auto 20px;"
-                    title="发票类型：暂时无法提供书籍类发票"
-                    type="info">
-                </el-alert>
                 <el-form-item>
                     <el-button @click="cancel">取消</el-button>
                     <el-button type="primary" @click="onSubmit">提交申请</el-button>
@@ -59,7 +51,7 @@ export default {
                 uname:'',
                 email:'',
                 paragraph: '',
-                typeselect:'咨询费'
+                typeselect:'印刷品'
             },
             rules:{
                 uname:[

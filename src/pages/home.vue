@@ -14,13 +14,12 @@
             <!-- list -->
             <div class="bookList">
                 <div class="bookListContent">
-                    <h4 class="title" style="margin-top:30px;">最新研究报告</h4>
+                    <h4 class="title" style="margin-top:30px;">最新研究报告<span class="BtnStyle" @click="btnvideo">更多</span></h4>
                     <div class="bookContent">
                         <div class="row">
-                            <div class="col-xs-4" v-for="(item,index) in bookPopList" :key="index" v-if="index<3" @click="toDetail(item.id)">
+                            <div class="col-xs-4" v-for="(item,index) in bookPopList" :key="index"  @click="toDetail(item.id)">
                                 <img :src="item.goodsImg" alt="" class="img-responsive bookImg">
                                 <h4 class="bookName">{{item.goodsName}}</h4>
-                                <p class="bookAuthor">{{item.goodsAuthor}}</p>
                             </div>
                         </div>
                     </div>
@@ -137,6 +136,7 @@ export default {
             getBookPopList({
                 'type':'ShopHomeTop'
             }).then((res)=>{
+                console.log(res)
                 this.bookPopList=res.data.goodList
             })
         },
@@ -177,6 +177,10 @@ export default {
                     }
             }
             return args;
+        },
+        //跳转书库
+        btnvideo:function() { 
+            this.$router.push({path:"/course"})
         }
     },
     created(){
@@ -235,8 +239,19 @@ export default {
         }
         .bookList{
             margin-top: 20px;
+            margin-bottom: 45px;
             .bookListContent{
                 margin-bottom: 20px;
+                .BtnStyle{
+                    float: right;
+                    background: #f1f1f1;
+                    color: #777;
+                    padding: 5px 10px;
+                    font-size: 15px;
+                    font-weight:normal;
+                    display:inline-block;
+                    border-radius: 3px;
+                }
             }
             .title{
                 font-size: 20px;
@@ -266,15 +281,15 @@ export default {
             .bookName{
                 padding: 2px 0 0 2px;
                 font-weight: 600;
-                font-size: 13px;
+                font-size: 12px;
                 color: #333;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
                 // -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;
-                min-height: 29px;
-                max-height: 29px;
+                min-height: 28px;
+                max-height: 28px;
                 margin: 6px 0;
             }
             .bookAuthor{
@@ -294,6 +309,15 @@ export default {
                 @media (max-width: 321px) {
                     display: none;
                 }
+            }
+            .bookContent{
+                // padding-left: 5px;
+                // padding-right: 5px;
+                // .col-xs-3{
+                //     padding-left: 10px;
+                //     padding-right: 10px;
+                // }
+
             }
             .bookContentRow{
                 margin-bottom: 20px;
@@ -356,7 +380,7 @@ export default {
         }
         .more{
             position: relative;
-            top: -20px;
+            top: -30px;
             color: #777;
             display: flex;
             justify-content: center;
