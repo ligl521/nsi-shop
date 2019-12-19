@@ -180,7 +180,7 @@ export default {
         },
         //跳转书库
         btnvideo:function() { 
-            this.$router.push({path:"/course"})
+            this.$router.push({path:"/list"})
         }
     },
     created(){
