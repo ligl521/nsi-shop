@@ -45,7 +45,7 @@
                 <span class="iconfont icon-guanbi del" @click="del(i)"></span>
             </div>
         </div>
-        <div class="shoppingHints ">提交订单后可申请电子发票<br/>图书商品不支持退款</div>
+        <div class="shoppingHints ">提交订单后可申请电子发票<br/>图书商品不支持退款<p class="styleRed">过年期间受快递影响，节后发货，请多多谅解</p></div>
         <div class="totalBox" v-if="goodsLength!=0">
             <div class="totalPrice">
                 合计:<span>￥{{formatNum(totalPrice)}}</span>
@@ -526,5 +526,8 @@ export default {
           text-align: center;
           color: #aaa;
         }
+    }
+    .styleRed{
+        color: red;
     }
 </style>

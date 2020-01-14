@@ -36,7 +36,7 @@
         <div class="message">
             <p>买家留言：<input class="txt" type="text" placeholder="填写留言" ref="buyerMessage"></p>
         </div>
-        <div class="shoppingHints">提交订单后可申请电子发票<br/>图书商品不支持退款</div>
+        <div class="shoppingHints">提交订单后可申请电子发票<br/>图书商品不支持退款<p class="styleRed">过年期间受快递影响，节后发货，请多多谅解</p></div>
         <!-- 购买btn -->
         <div class="buyBtnBox">
             <div>合计金额：<span class="rmb">￥</span><span class="totalPrice">{{totalPrice}}.00</span></div>
@@ -411,5 +411,8 @@ export default {
           text-align: center;
           color: #aaa;
         }
+    }
+    .styleRed{
+        color: red;
     }
 </style>
