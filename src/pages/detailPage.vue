@@ -92,8 +92,7 @@ export default {
             }).then((res)=>{
                 this.book=res.data.data
                 document.title=this.book.goodsName
-                console.log(this.book)
-                // document.title=this.detail.title
+                console.log(this.book);
                 // 微信分享
                 this.wxShareInfo.title="国际教育研究院 | "+this.book.goodsName
                 this.wxShareInfo.imgUrl=this.book.goodsImg
@@ -103,6 +102,7 @@ export default {
             })
         },
         saveGoodsInfo(){
+            getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'))
             localStorage.setItem("goodsId",this.book.id)
             localStorage.setItem("goodsName",this.book.goodsName)
             localStorage.setItem("goodsPrice",this.book.goodsPrice)
@@ -131,6 +131,7 @@ export default {
             return args;
         },
         addCart:Debounce(function(){
+            getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'));
             let idExist=this.$store.state.shoppingList.find((item)=>{
                 return item.goodsId==this.$route.params.id
             })
@@ -170,7 +171,7 @@ export default {
         }
     },
     created(){
-        this.fetchDate()
+         this.fetchDate()
     },
     watch: {
       '$route' (to, from) {
