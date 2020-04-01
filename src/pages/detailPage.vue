@@ -50,7 +50,16 @@
             </div>
         </div>
         <service-detail></service-detail>
-
+        <!-- 对话框 -->
+        <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="90%">
+            <span>商品已下架</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="dialogVisibleBtn">确 定</el-button>
+            </span>  
+        </el-dialog>
     </div>
 </template>
 
@@ -66,6 +75,7 @@ export default {
     },
     data() {
         return {
+            dialogVisible:false,//对话框
             book:{},
             wxShareInfo:{
                 title:"",
@@ -78,6 +88,12 @@ export default {
         }
     },
     methods:{
+        // 确定返回上一个页面
+        dialogVisibleBtn(){
+            this.$router.push({
+                path:"/list"
+            })
+        },
         backPrePage(){
             location.href="https://www.xinxueshuo.cn/nsi-shop/dist/index.html#/list"
         },
@@ -90,6 +106,10 @@ export default {
                     Id:this.listId
                 }
             }).then((res)=>{
+                console.log(res.data.data.goodsState == "下架")
+                if(res.data.data.goodsState == "下架"){
+                    this.dialogVisible = true;
+                }
                 this.book=res.data.data
                 document.title=this.book.goodsName
                 console.log(this.book);
