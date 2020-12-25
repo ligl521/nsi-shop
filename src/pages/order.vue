@@ -15,6 +15,7 @@
                 <p class="address" @click="manageAddress()">收货地址：{{addressVal}}<span class="moreAddress iconfont icon-iconfonticonfonti2copycopy"></span></p>
             </div>
         </div>
+        <p class="title-p">付款成功后可在订单里开具发票</p>
         <!-- 商品信息 -->
         <div class="shopInfo">
             <p class="title">商品信息</p>
@@ -46,6 +47,7 @@
 
 <script>
 import {getUsrInfo,miniProPayInfo} from '@/assets/js/common.js'
+import {detail} from '@/api/api';
 export default {
     data() {
         return {
@@ -64,16 +66,21 @@ export default {
             loading:true
         }
     },
+    created(){
+        this.goodsName=localStorage.getItem("goodsName")
+        this.goodsPrice=localStorage.getItem("goodsPrice")
+        this.goodsPic=localStorage.getItem('goodsPic')
+        console.log(this.$route.query.id)
+    },
     methods:{
         handleChange(value) {
-            // console.log(value);
             this.countPrice()
         },
         countPrice(){
             return this.totalPrice=this.goodsPrice*this.num
         },
         backPrePage(){
-            // history.back(-1)
+           
            let href='https://www.xinxueshuo.cn/nsi-shop/dist/index.html#/detailPage/'+localStorage.getItem("goodsId")
            location.href=href
         },
@@ -195,35 +202,55 @@ export default {
         }
     },
     beforeMount(){
-        let storage = window.localStorage
-        this.goodsName=localStorage.getItem("goodsName")
-        this.goodsPrice=localStorage.getItem("goodsPrice")
-        this.goodsPic=localStorage.getItem('goodsPic')
-        this.axios({
-            method:"get",
-            url: '/ShopAddress/getList.do',
-            params:{
-                wechatId:storage.openId
-            }
-        }).then((res)=>{
-            this.loading=false
-            this.hasNoAddress=false
-            // 0成功 1失败
-            let code=res.data.code
-            let receiver=res.data.data
-            // console.log(res.data.data)
-            if(code===0){
-                this.name=receiver.receivename
-                this.phoneVal=receiver.receivephone
-                this.province=receiver.receivearea01
-                this.city=receiver.receivearea02
-                this.addressDetail=receiver.receivearea03
-                this.addressVal=this.province+' '+this.city+' '+this.addressDetail
-                localStorage.setItem("name",this.name)
-            }else{
-                this.hasNoAddress=true
-            }
-        })
+        if(this.$route.query.id == undefined){
+           let storage = window.localStorage
+            this.axios({
+                method:"get",
+                url: '/ShopAddress/getList.do',
+                params:{
+                    wechatId:storage.openId
+                }
+            }).then((res)=>{
+                this.loading=false
+                this.hasNoAddress=false
+                // 0成功 1失败
+                let code=res.data.code
+                let receiver=res.data.data[0]
+                console.log(res.data.data)
+                if(code===0){
+                    this.name=receiver.receivename
+                    this.phoneVal=receiver.receivephone
+                    this.province=receiver.receivearea01
+                    this.city=receiver.receivearea02
+                    this.addressDetail=receiver.receivearea03
+                    this.addressVal=this.province+' '+this.city+' '+this.addressDetail
+                    localStorage.setItem("name",this.name)
+                }else{
+                    this.hasNoAddress=true
+                }
+            })
+        }else{
+         detail({
+             id:this.$route.query.id
+            }).then(res=>{
+                console.log(res)
+                console.log(res.data)
+                this.loading=false
+                this.hasNoAddress=false
+                // 0成功 1失败
+                let code=res.code
+                let receiver=res.data
+                if(code==0){
+                    this.name=receiver.receivename
+                    this.phoneVal=receiver.receivephone
+                    this.province=receiver.receivearea01
+                    this.city=receiver.receivearea02
+                    this.addressDetail=receiver.receivearea03
+                    this.addressVal=this.province+' '+this.city+' '+this.addressDetail
+                    localStorage.setItem("name",this.name)
+                }else{}
+            })
+        }
     },
     mounted(){
         getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2forder')
@@ -314,9 +341,17 @@ export default {
                 }
             }
         }
+        .title-p{
+            margin: 10px 0 ;
+            text-align: center;
+            color: rgb(255, 30, 0);
+            font-size: 16px;
+            font-weight: 700;
+        }
         .shopInfo{
             padding: 15px;
             border-bottom: 1px solid #eee;
+            border-top: 1px solid #eee;
             .title{
                 color: #555;
             }

@@ -13,10 +13,10 @@
                     <p class="iconBox text-center"><span class="iconfont icon-liebiao1"></span></p>
                     <p class="iconName text-center">书库</p>
                 </router-link>
-                <router-link to="/course" v-show="isSmallRoutineStatus" tag="li">
+                <!-- <router-link to="/course" v-show="isSmallRoutineStatus" tag="li">
                     <p class="iconBox text-center"><span class="iconfont icon-shipinbofangyingpian"></span></p>
                     <p class="iconName text-center">课程</p>
-                </router-link>
+                </router-link> -->
                 <router-link to="/mine" tag="li">
                     <p class="iconBox text-center"><span class="iconfont icon-gerenzhongxin1"></span></p>
                     <p class="iconName text-center">我的</p>

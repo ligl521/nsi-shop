@@ -37,12 +37,15 @@
                         <p class="myOrderLogo text-center"><span class="iconfont icon-Group-"></span></p>
                         <p class="myOrder text-center">地址管理</p>
                     </router-link>
+                     <router-link tag="div" to="/record" class="orderItme">
+                        <p class="myOrderLogo text-center"><span class="iconfont icon-youhuiquan"></span></p>
+                        <p class="myOrder text-center">开票记录</p>
+                    </router-link>
                 </div>
             </div>
         </div>
-
-         <!-- 课程 -->
-        <div v-show="isSmallRoutineStatus" class="container-fluid mt15">
+        <!-- 课程 -->
+        <!-- <div v-show="isSmallRoutineStatus" class="container-fluid mt15">
             <div class="myOrderBox">
                 <h4 class="myTitle">我的课程<router-link to="/mycourse" tag="div" class="moreOrder">更多<span class="iconfont icon-iconfonticonfonti2copycopy"></span></router-link></h4>
                 <div class="orderBox courseContent">
@@ -55,8 +58,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div> -->
         <!-- 工具 -->
         <div class="container-fluid mt15">
             <div class="myOrderBox">
@@ -79,7 +81,7 @@
         </div>
 
         <div class="container-fluid copyrightBox">
-            <p class="text-center copyright" @click="clear">- 新学说提供技术支持1.0 -</p>
+            <p class="text-center copyright" @click="clear">- 新学说提供技术支持1.3 -</p>
         </div>
     </div>
 </template>
@@ -132,14 +134,11 @@ export default {
                productType:'课程',
                'unionId':localStorage.getItem('unionid'),
             }).then(res=>{
-                // console.log(res.data)
                 for(let i=0;i<res.data.length;i++){
                     if(res.data[i].statusDesc==="已付款"){
                         this.courseList.push(res.data[i])
                     }
                 }
-                // console.log(this.courseList.length)
-                // this.courseList=res.data
             })
         },
         toDetailCourse(id){
@@ -153,7 +152,6 @@ export default {
         isSmallRoutine().then(function(data){
             that.isSmallRoutineStatus=data
         })
-        // this.getUsrInfo()
     },
     beforeMount(){
         let storage = window.localStorage
@@ -164,7 +162,6 @@ export default {
             method:"get",
             url: '/ShopAddress/getList.do',
             params:{
-                // wechatId:'123123'
                 wechatId:localStorage.getItem('openId')
             }
         }).then((res)=>{

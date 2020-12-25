@@ -21,24 +21,14 @@
                 <el-form-item label="接收邮箱" prop="email">
                     <el-input v-model="form.email"></el-input>
                 </el-form-item>
-                <!-- <el-alert style="width:80%;margin:0 auto 20px;background-color:#fff;"
-                    title="电子发票将会发送至该邮箱，请准确填写！"
-                    type="info">
-                </el-alert> -->
                 <el-form-item label="发票类型" style="margin-bottom:15px;">
                     <el-select v-model="form.typeselect" placeholder="请选择发票类型">
-                    <el-option label="咨询费" value="咨询费"></el-option>
-                    <el-option label="会议费" value="会议费"></el-option>
-                    <el-option label="会议服务费" value="会议服务费"></el-option>
+                    <el-option label="印刷品" value="印刷品"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-alert style="width:75%;margin:0 auto 20px;"
-                    title="发票类型：暂时无法提供书籍类发票"
-                    type="info">
-                </el-alert>
                 <el-form-item>
                     <el-button @click="cancel">取消</el-button>
-                    <el-button type="primary" @click="onSubmit">提交申请</el-button>
+                    <el-button type="primary" @click="onSubmit('form')">提交申请</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -59,7 +49,7 @@ export default {
                 uname:'',
                 email:'',
                 paragraph: '',
-                typeselect:'咨询费'
+                typeselect:'印刷品'
             },
             rules:{
                 uname:[
@@ -82,9 +72,9 @@ export default {
         cancel(){
             history.back()
         },
-        onSubmit() {
-            // console.log('submit!');
-            this.$refs['form'].validate((val)=>{
+        onSubmit(form) {
+            this.$refs[form].validate((val)=>{
+              if(val){
                 let userinvoicename=this.form.name
                 let userinvoicenum=this.form.paragraph
                 let userbillingtype=this.form.typeselect
@@ -92,15 +82,16 @@ export default {
                 let username=this.form.uname
                 let userordernum=this.form.orderNum
                 let managemoney=this.form.price
-
                 createInvoice({
-                    userinvoicename:userinvoicename,
-                    userinvoicenum:userinvoicenum,
-                    userbillingtype:userbillingtype,
+                    userInvoiceName:userinvoicename,
+                    userInvoiceNum:userinvoicenum,
+                    userBillingType:userbillingtype,
                     usermail:usermail,
                     username:username,
-                    userordernum:userordernum,
-                    managemoney:managemoney
+                    userOrderNum:userordernum,
+                    manageMoney:managemoney,
+                    invoiceType:1,
+                    wechatId:localStorage.getItem('openId'),
                 }).then(res=>{
                     // console.log(res.data)
                     if(res.code==0){
@@ -111,12 +102,16 @@ export default {
                         history.go(-1)
                     }else{
                         this.$message({
-                            message: '网络错误，请稍后重试',
+                            message: res.msg,
                             type: 'error',
                             duration:1500
                         })
                     }
                 })
+              }else{
+                alert("请填写完整表单！！");
+                return false;
+              }
             })
         }
     },

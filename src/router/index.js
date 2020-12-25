@@ -34,6 +34,7 @@ import pcPage from '@/pages/judgeIsPc'
 import cartPage from '@/components/shoppingCart/shoppingCart'
 import invoicePage from '@/components/invoice/invoice'
 import offlineCoursePage from '@/components/coursePage/offlineCourse'
+import record from '@/pages/record'
 
 Vue.use(Router)
 
@@ -176,6 +177,11 @@ export default new Router({
         }, {
             path: '/offlinecourse/:id',
             component: offlineCoursePage
+        }
+        , {
+            path: '/record',
+            name: 'record',
+            component: record
         }
     ]
 })

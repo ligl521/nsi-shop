@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                 <div v-show="isSmallRoutineStatus" class="bookListContent">
+                 <!-- <div v-show="isSmallRoutineStatus" class="bookListContent">
                     <h4 class="title">精品课程</h4>    
                     <div class="courseContentRow" v-for="(item,index) in courseList" :key="index"  @click="toCourseDetail(item.listId)">
                         <div class="row">
@@ -36,12 +36,12 @@
                             <div class="col-xs-8 pl0 pr160">
                                 <h4 class="bookName">{{item.listTitle}}</h4>
                                 <p class="bookAuthor">{{item.lecturer}}</p>
-                                <!-- <p class="bookPress">{{item.goodsPress}}</p> -->
+                               
                                 <p class="bookDesc">{{item.syllabus}}</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                 </div> -->
                 <div class="bookListContent">
                     <h4 class="title">限时特惠</h4>
                     <div class="bookContent">

@@ -19,7 +19,7 @@ Vue.prototype.axios = axios
 // axios.defaults.baseURL = "http://192.168.0.13:8080/nsi-1.0"
 
 // 罗振
- //axios.defaults.baseURL = "http://192.168.0.7:8080/nsi-1.0"
+//  axios.defaults.baseURL = "http://192.168.0.102:8080/nsi-1.0"
 
 // 生产
 // axios.defaults.baseURL = "http://data.xinxueshuo.cn/nsi-1.0"

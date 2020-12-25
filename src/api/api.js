@@ -84,3 +84,7 @@ export const createInvoice = p => post('/Invoice/ShopInvoiceCreate.do', p)
 export const recommmendBookOrCourse = p => post('/ShopRecommend/getRecommend.do', p)
 // 报错
 export const apiError = p => post('/CommonApi/ErrorNotify.do', p)
+// 地址详情
+export const detail = p => get('/ShopAddress/detail.do', p)
+// 开票记录
+export const invoiceHistory = p => get('/Invoice/get_invoice_history.do', p)

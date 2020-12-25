@@ -1,16 +1,18 @@
 <template>
-    <div class="address-com">
-        <h4 class="order-title text-center" v-if="hasNoAddress"><span class="back iconfont icon-zuojiantou" @click="backPrePage()"></span>地址管理<span class="addAddress" >添加新地址</span></h4>
-        <h4 class="order-title text-center"  v-else><span class="back iconfont icon-zuojiantou" @click="backPrePage()"></span>地址管理<span class="addAddress" @click="editAddress()">编辑地址</span></h4>
+    <div class="address-com1">
+        <h4 class="order-title text-center"><span class="back iconfont icon-zuojiantou" @click="backPrePage()"></span>地址管理<span class="addAddress" @click="editAddress()">添加新地址</span></h4>
         <div class="noAddress" v-if="hasNoAddress">
             <span class="iconfont icon-zanwukoubei"></span>
             <p class="text-center">暂无收货地址</p>
         </div>
-        <div class="hasAddress" v-else>
-            <div class="nameLogo">{{nameLogo}}</div>
-            <div class="addressInfo">
-                <p class="name">{{name}}<span class="phone">{{phone}}</span></p>
-                <p class="address">{{address}}</p>
+        <div class="hasAddress" v-else >
+            <div class="addressInfo1" v-for="(item,index) in list" :key="index">
+                <div style="width:100%" @click="order(item.id)">
+                    <p class="address">{{item.receivearea01}}{{item.receivearea02}}</p>
+                    <p class="name">{{item.receivearea03}}</p>
+                    <p class="address">{{item.receivename}}<span class="phone">{{item.receivephone}}</span></p>
+                </div>
+                <img @click="editAddress1(item.id)" class="edit" src="../assets/xiugai.png" alt="">
             </div>
         </div>
     </div>
@@ -21,10 +23,7 @@ import {getUsrInfo} from '@/assets/js/common'
 export default {
     data() {
         return {
-            nameLogo:'',
-            name:'',
-            phone:'',
-            address:'',
+            list:'',
             hasNoAddress:true
         }
     },
@@ -40,22 +39,17 @@ export default {
                 method:"get",
                 url: '/ShopAddress/getList.do',
                 params:{
-                    // wechatId:'123123'
                     wechatId:localStorage.getItem('openId'),
                     'unionId':localStorage.getItem('unionid'),
                 }
             }).then((res)=>{
+                console.log(res)
+                console.log(res.data.data)
                 // 0成功 1失败
                 let code=res.data.code
                 if(code===0){
                     this.hasNoAddress=false
-                    let address=res.data.data
-                    let name=address.receivename
-                    this.nameLogo=name.substring(0,1)
-                    this.name=address.receivename
-                    this.phone=address.receivephone
-                    this.address=address.receivearea01+address.receivearea02+address.receivearea03
-                    // localStorage.setItem("name",name)
+                    this.list=res.data.data
                 }else{
                     this.hasNoAddress=true
                 }
@@ -63,6 +57,12 @@ export default {
         },
         editAddress(){
             this.$router.push({path:'/editAddress'})
+        },
+        editAddress1(e){
+            this.$router.push({path:'/editAddress',query:{id:e}})
+        },
+        order(e){
+            this.$router.push({path:'/order',query:{id:e}})
         }
     },
     mounted(){
@@ -72,13 +72,13 @@ export default {
 </script>
 
 <style lang="scss">
-    .address-com{
+    .address-com1{
         .order-title{
             height: 50px;
             line-height: 50px;
             color: #333;
             background-color: #f9f9f9;
-            margin-top: 0;
+            margin: 0;
             position: relative;
             .back{
                 position: absolute;
@@ -87,7 +87,7 @@ export default {
             .addAddress{
                 position: absolute;
                 right: 15px;
-                font-size: 14px;
+                font-size: 16px;
             }
         }
         .noAddress{
@@ -106,9 +106,7 @@ export default {
             }
         }
         .hasAddress{
-            padding: 15px;
-            display: flex;
-            align-items: center;
+            margin-bottom: 20px;
             .nameLogo{
                 flex:0 0 auto;
                 margin-right: 15px;
@@ -121,16 +119,32 @@ export default {
                 color: #fff;
                 font-size: 22px;
             }
-            .addressInfo{
+            .addressInfo1:first-child{
+                border-top:1px solid #eee ;
+            }
+            .addressInfo1{
+                display: flex;
+                border-bottom:1px solid #eee ;
+                padding: 10px;
                 .name{
                     color: #333;
                     font-size: 18px;
-                    margin-right: 15px;
+                    margin: 5px 0;
+                    font-weight: 700;
+                    
+                }
+                .edit{
+                    float: right;
+                    width: 20px;
+                    height: 20px;
+                    margin-top:30px;
+                }
+                .address{
+                    margin: 0;
+                    font-size: 14px;
+                    color: rgb(88, 88, 88);
                     .phone{
-                        display: inline-block;
-                        margin-left: 15px;
-                        color: #888;
-                        font-size: 14px;
+                        margin-left: 20px;
                     }
                 }
             }

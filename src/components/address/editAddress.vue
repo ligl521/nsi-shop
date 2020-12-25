@@ -22,7 +22,7 @@
 
 <script>
 import chooseAddress from '@/components/address/chooseAddress';
-import {editAddress,getAddress} from '@/api/api';
+import {editAddress,getAddress,createAddress,detail} from '@/api/api';
 import {Debounce} from '@/assets/js/common'
 import {getUsrInfo} from '@/assets/js/common'
 export default {
@@ -75,7 +75,7 @@ export default {
                         type: 'error'
                     });
                 }else{
-                    editAddress({
+                    createAddress({
                         'unionId':localStorage.getItem('unionid'),
                         wechatid:openId,
                         receivename:name,
@@ -85,10 +85,9 @@ export default {
                         receivearea03:area03,
                     }).then(res=>{
                         this.$message({
-                            message: '地址更换成功',
+                            message: '地址添加成功',
                             type: 'success'
                         });
-                        // console.log(res)
                         history.go(-1)
                     })
                 }
@@ -102,22 +101,22 @@ export default {
     },
     created(){
         getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2feditAddress')
-        getAddress({
-            wechatId:localStorage.getItem('openId'),
-            'unionId':localStorage.getItem('unionid'),
+        console.log(this.$route.query.id)
+        detail({
+           id:this.$route.query.id
         }).then(res=>{
+            console.log(res)
             this.loading=false
             // 0成功 1失败
             let code=res.code
             let receiver=res.data
-            // console.log(res.data.data)
             if(code===0){
                 this.name=receiver.receivename
                 this.phoneVal=receiver.receivephone
                 this.province=receiver.receivearea01
                 this.city=receiver.receivearea02
                 this.addressDetail=receiver.receivearea03
-                this.addressVal=this.province+' '+this.city
+                this.addressVal=this.province === undefined?'':this.province +' '+this.city=== undefined?'':this.city
             }else{}
         })
     },

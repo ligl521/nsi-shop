@@ -8,6 +8,7 @@
             <router-link tag="li" to="/orderState/confirm">待收货</router-link>
             <router-link tag="li" to="/orderState/success">交易成功</router-link>
         </ul>
+        <p class="title">商品两个工作日内发货</p>
         <keep-alive>
             <router-view></router-view>
         </keep-alive>
@@ -49,6 +50,13 @@ export default {
             font-weight: 600;
             font-size: 16px;
             border-bottom: 2px solid rgb(255, 30, 0);
+        }
+        .title{
+            text-align: center;
+            margin-top: 10px;
+            color: rgb(255, 30, 0);
+            font-size: 16px;
+            font-weight: 700;
         }
     }
 </style>
