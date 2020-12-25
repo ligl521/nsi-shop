@@ -108,7 +108,7 @@ export default {
             localStorage.removeItem('unionid')
             localStorage.removeItem('wxCode')
             this.$message({
-                message: '已清空缓存',
+                message: '已清空缓存11.27-2',
                 type: 'success'
             })
         },

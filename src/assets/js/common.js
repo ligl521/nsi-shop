@@ -33,7 +33,7 @@ export function getUsrInfo(url) {
     let code = decodeURIComponent(args['code'])
     localStorage.setItem('wxCode', code)
     console.log('---------------------------')
-    console.log(localStorage.getItem('wxCode'))
+    console.log("wxCode: "+localStorage.getItem('wxCode'))
     if (storage.getItem('openId')) {} else {
         if (localStorage.getItem('wxCode') == 'undefined') {
             window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx37e5ddff7dc5282e&redirect_uri=" + url + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
@@ -60,7 +60,7 @@ export function getUsrInfo(url) {
                     console.log(res)
                     location.reload()
                 })
-                
+
             })
         }
     }
@@ -74,7 +74,7 @@ export function getUsrInfo(url) {
  * @constructor
  */
 export const Debounce = (fn, t) => {
-    let delay = t || 500;
+    let delay = t || 1000;
     let timer;
     // console.log(fn)
     // console.log(typeof fn)
@@ -90,7 +90,7 @@ export const Debounce = (fn, t) => {
     }
 };
 
-/** 
+/**
  * 判断当前是否微信小程序环境,因该是废弃,不敢乱删
  * @return {boolean}
  */

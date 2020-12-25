@@ -33,6 +33,7 @@
         </div>
         <recommend></recommend>
         <div class="content" v-html="book.goodsInfo"></div>
+        <div class="shoppingHints">-可提供发票  书籍类商品不支持退货-</div>
         <div class="buyBox">
             <!-- <span class="buyBtn price">售价：<span>￥{{book.goodsPrice}}.00</span><em class="free">免运费</em></span> -->
             <div class="cartBox">
@@ -49,7 +50,16 @@
             </div>
         </div>
         <service-detail></service-detail>
-
+        <!-- 对话框 -->
+        <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="90%">
+            <span>商品已下架</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="dialogVisibleBtn">确 定</el-button>
+            </span>  
+        </el-dialog>
     </div>
 </template>
 
@@ -65,6 +75,7 @@ export default {
     },
     data() {
         return {
+            dialogVisible:false,//对话框
             book:{},
             wxShareInfo:{
                 title:"",
@@ -77,6 +88,12 @@ export default {
         }
     },
     methods:{
+        // 确定返回上一个页面
+        dialogVisibleBtn(){
+            this.$router.push({
+                path:"/list"
+            })
+        },
         backPrePage(){
             location.href="https://www.xinxueshuo.cn/nsi-shop/dist/index.html#/list"
         },
@@ -89,10 +106,13 @@ export default {
                     Id:this.listId
                 }
             }).then((res)=>{
+                console.log(res.data.data.goodsState == "下架")
+                if(res.data.data.goodsState == "下架"){
+                    this.dialogVisible = true;
+                }
                 this.book=res.data.data
                 document.title=this.book.goodsName
-                console.log(this.book)
-                // document.title=this.detail.title
+                console.log(this.book);
                 // 微信分享
                 this.wxShareInfo.title="国际教育研究院 | "+this.book.goodsName
                 this.wxShareInfo.imgUrl=this.book.goodsImg
@@ -102,6 +122,7 @@ export default {
             })
         },
         saveGoodsInfo(){
+            getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'))
             localStorage.setItem("goodsId",this.book.id)
             localStorage.setItem("goodsName",this.book.goodsName)
             localStorage.setItem("goodsPrice",this.book.goodsPrice)
@@ -130,6 +151,7 @@ export default {
             return args;
         },
         addCart:Debounce(function(){
+            getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2fdetailPage%2f'+localStorage.getItem('courseId'));
             let idExist=this.$store.state.shoppingList.find((item)=>{
                 return item.goodsId==this.$route.params.id
             })
@@ -169,7 +191,7 @@ export default {
         }
     },
     created(){
-        this.fetchDate()
+         this.fetchDate()
     },
     watch: {
       '$route' (to, from) {
@@ -393,6 +415,11 @@ export default {
                 color: #fb2727;
             }
 
+        }
+        .shoppingHints{
+          text-align: center;
+          color: #aaa;
+          padding-bottom: 40px;
         }
     }
 </style>

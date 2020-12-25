@@ -21,12 +21,12 @@
                 <p>购物车是空的</p>
             </div>
             <router-link tag="div" to="/list" class="other">
-                <span>去逛逛</span> 
+                <span>去逛逛</span>
             </router-link>
         </div>
         <!-- list -->
         <div class="itemBox">
-            <div class="goodItem" v-for="(v,i) in goodsList">
+            <div class="goodItem" v-for="(v,i) in goodsList" :key="i">
                 <div class="imgBox">
                     <img :src="v.goodsImg" alt="" class="img-responsive">
                 </div>
@@ -45,6 +45,7 @@
                 <span class="iconfont icon-guanbi del" @click="del(i)"></span>
             </div>
         </div>
+        <div class="shoppingHints ">提交订单后可申请电子发票<br/>图书商品不支持退款<p class="styleRed">疫情期间受快递影响，发货缓慢，请多多谅解</p></div>
         <div class="totalBox" v-if="goodsLength!=0">
             <div class="totalPrice">
                 合计:<span>￥{{formatNum(totalPrice)}}</span>
@@ -141,7 +142,7 @@ export default {
         getTotalPrice(){
             this.totalPrice=this.$store.getters.sum
             this.goodsLength=this.$store.getters.goodsNumber
-        },  
+        },
         formatNum(str){
             var str=str.toString()
             var newStr = "";
@@ -210,7 +211,7 @@ export default {
                                 totalPrice:totalfee
                             }).then((res)=>{
                                 var ua=window.navigator.userAgent.toLowerCase()
-                                if (ua.match(/MicroMessenger/i) == 'micromessenger') { 
+                                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
                                     wx.miniProgram.getEnv((wxres)=>{
                                         if(wxres.miniprogram){
                                             this.axios({
@@ -236,7 +237,7 @@ export default {
                                     })
                                 }
                             })
-                        }) 
+                        })
                     }else{
                         this.$message({
                             message: '网络错误，请联系客服或稍后尝试1',
@@ -270,12 +271,12 @@ export default {
                 function onBridgeReady(){
                     WeixinJSBridge.invoke(
                         'getBrandWCPayRequest', {
-                            "appId": appId, //公众号名称，由商户传入     
-                            "timeStamp": timeStamp, //时间戳，自1970年以来的秒数     
-                            "nonceStr": nonceStr, //随机串     
+                            "appId": appId, //公众号名称，由商户传入
+                            "timeStamp": timeStamp, //时间戳，自1970年以来的秒数
+                            "nonceStr": nonceStr, //随机串
                             "package": packageNum,
-                            "signType": signType, //微信签名方式：     
-                            "paySign": paySign //微信签名 
+                            "signType": signType, //微信签名方式：
+                            "paySign": paySign //微信签名
                         },
                         function(res) {
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
@@ -521,5 +522,12 @@ export default {
                 color: #fa1300;
             }
         }
+        .shoppingHints{
+          text-align: center;
+          color: #aaa;
+        }
+    }
+    .styleRed{
+        color: red;
     }
 </style>

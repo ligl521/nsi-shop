@@ -37,6 +37,7 @@
         <div class="message">
             <p>买家留言：<input class="txt" type="text" placeholder="填写留言" ref="buyerMessage"></p>
         </div>
+        <div class="shoppingHints">提交订单后可申请电子发票<br/>图书商品不支持退款<p class="styleRed">疫情期间受快递影响，发货缓慢，请多多谅解</p></div>
         <!-- 购买btn -->
         <div class="buyBtnBox">
             <div>合计金额：<span class="rmb">￥</span><span class="totalPrice">{{totalPrice}}.00</span></div>
@@ -166,19 +167,19 @@ export default {
                                         function onBridgeReady(){
                                             WeixinJSBridge.invoke(
                                                 'getBrandWCPayRequest', {
-                                                    "appId": appId, //公众号名称，由商户传入     
-                                                    "timeStamp": timeStamp, //时间戳，自1970年以来的秒数     
-                                                    "nonceStr": nonceStr, //随机串     
+                                                    "appId": appId, //公众号名称，由商户传入
+                                                    "timeStamp": timeStamp, //时间戳，自1970年以来的秒数
+                                                    "nonceStr": nonceStr, //随机串
                                                     "package": packageNum,
-                                                    "signType": signType, //微信签名方式：     
-                                                    "paySign": paySign //微信签名 
+                                                    "signType": signType, //微信签名方式：
+                                                    "paySign": paySign //微信签名
                                                 },
                                                 function(res) {
                                                     if (res.err_msg == "get_brand_wcpay_request:ok") {
                                                         //alert("支付成功")
                                                         let routeData =that.$router.resolve({name:"orderAll"})
                                                         window.location.href=routeData.href
-                                                    } // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+                                                    } // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
                                                 }
                                             );
                                         }
@@ -253,7 +254,7 @@ export default {
         }
     },
     mounted(){
-        getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2forder')
+        // getUsrInfo('https%3a%2f%2fwww.xinxueshuo.cn%2fnsi-shop%2fdist%2findex.html%23%2forder')
         this.countPrice()
     }
 }
@@ -441,5 +442,12 @@ export default {
                 color: #fff;
             }
         }
+        .shoppingHints{
+          text-align: center;
+          color: #aaa;
+        }
+    }
+    .styleRed{
+        color: red;
     }
 </style>

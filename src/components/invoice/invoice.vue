@@ -9,6 +9,9 @@
                 <el-form-item label="实付金额">
                     <el-input v-model="form.price" :disabled="true"></el-input>
                 </el-form-item>
+                <el-form-item label="发票类型">
+                    <el-input v-model="form.typeselect" :disabled="true"></el-input>
+                </el-form-item>
                 <el-form-item label="发票抬头" prop="name">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
@@ -26,6 +29,10 @@
                     <el-option label="印刷品" value="印刷品"></el-option>
                     </el-select>
                 </el-form-item>
+                <!-- <el-alert style="width:80%;margin:0 auto 20px;background-color:#fff;"
+                    title="电子发票将会发送至该邮箱，请准确填写！"
+                    type="info">
+                </el-alert> -->
                 <el-form-item>
                     <el-button @click="cancel">取消</el-button>
                     <el-button type="primary" @click="onSubmit('form')">提交申请</el-button>
@@ -36,7 +43,7 @@
 </template>
 
 <script>
-import {createInvoice} from '@/api/api'
+import {createInvoice,getCheckInvoice} from '@/api/api'
 export default {
     data() {
         return {
@@ -116,7 +123,20 @@ export default {
         }
     },
     mounted(){
-        this.form.orderNum=localStorage.getItem('orderNo')
+      this.form.orderNum=localStorage.getItem('orderNo')
+        getCheckInvoice({
+          orderNo:this.form.orderNum
+        }).then(res => {
+          if(res.code == "1"){
+            this.$message({
+              message: '您也提交发票申请,请耐心等候',
+              type: 'error',
+              duration:3000
+            })
+            this.$router.push('/orderState/confirm');
+          }
+          console.log(res)
+        })
         this.form.price=localStorage.getItem('total_price')
         this.$refs.bg.style.minHeight=(window.innerHeight-60)+"px"
     }

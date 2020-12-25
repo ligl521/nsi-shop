@@ -205,7 +205,7 @@ export default {
                   {id: 143, name: '高碑店市'}
               ]},
               {id: 9, name: '张家口市', district: [
-                  {id: 144, name: '桥东区'}, 
+                  {id: 144, name: '桥东区'},
                   {id: 145, name: '桥西区'},
                   {id: 146, name: '宣化区'},
                   {id: 147, name: '下花园区'},
@@ -2355,8 +2355,15 @@ export default {
                   {id: 1853, name: '英德市'},
                   {id: 1854, name: '连州市'}
               ]},
-              {id: 213, name: '东莞市', district: []},
-              {id: 214, name: '中山市', district: []},
+              {id: 213, name: '东莞市', district: [
+                {id:3000,name:'莞城'},
+                {id:3001,name:'南城'},
+                {id:3002,name:'万江'},
+                {id:3003,name:'东城'}
+              ]},
+              {id: 214, name: '中山市', district: [
+                {id:3004,name:'城区'}
+              ]},
               {id: 215, name: '潮州市', district: [
                   {id: 1855, name: '湘桥区'},
                   {id: 1856, name: '潮安县'},
@@ -3636,19 +3643,76 @@ export default {
                   {id: 2861, name: '青河县'},
                   {id: 2862, name: '吉木乃县'}
               ]},
-              {id: 339, name: '石河子市', district: []},
-              {id: 340, name: '阿拉尔市', district: []},
-              {id: 341, name: '图木舒克市', district: []},
-              {id: 342, name: '五家渠市', district: []}
+
+
+              {id: 339, name: '石河子市', district: [
+                {id: 3005, name: '城镇'}
+              ]},
+              {id: 340, name: '阿拉尔市', district: [
+                {id: 3006, name: '城镇'}
+              ]},
+              {id: 341, name: '图木舒克市', district: [
+                {id: 3007, name: '城镇'}
+              ]},
+              {id: 342, name: '五家渠市', district: [
+                {id: 3008, name: '城镇'}
+              ]}
           ]},
           {id: 32, name: '香港', city: [
-              {id: 343, name: '香港', district: []}
+              {id: 343, name: '香港', district: [
+                 {id: 3009, name: '中西区'},
+                 {id: 3010, name: '东区'},
+                 {id: 3011, name: '南区 '},
+                 {id: 3012, name: '湾仔区'},
+                 {id: 3013, name: '观塘区'},
+                 {id: 3014, name: '深水埗区'},
+                 {id: 3015, name: '黄大仙区'},
+                 {id: 3016, name: '油尖旺区'},
+                 {id: 3017, name: '离岛区'},
+                 {id: 3018, name: '葵青区'},
+                 {id: 3019, name: '北区'},
+                 {id: 3020, name: '西贡区'},
+                 {id: 3021, name: '沙田区'},
+                 {id: 3022, name: '大埔区'},
+                 {id: 3023, name: '荃湾区 '},
+                 {id: 3024, name: '屯门区'},
+                 {id: 3025, name: '元朗区'}
+              ]}
           ]},
           {id: 33, name: '澳门', city: [
-              {id: 344, name: '澳门', district: []}
+              {id: 344, name: '澳门', district: [
+                {id: 3026, name: '澳门半岛'},
+                {id: 3027, name: '离岛'}
+              ]}
           ]},
           {id: 34, name: '台湾', city: [
-              {id: 345, name: '台湾', district: []}
+              {id: 3028, name: '台北市', district: [
+                {id: 3037, name: '城镇'},
+              ]},
+              {id: 3029, name: '新北市', district: [
+                {id: 3038, name: '城镇'},
+              ]},
+              {id: 3030, name: '桃园市', district: [
+                {id: 3039, name: '城镇'},
+              ]},
+              {id: 3031, name: '台中市', district: [
+                {id: 3040, name: '城镇'},
+              ]},
+              {id: 3032, name: '台南市', district: [
+                {id: 3041, name: '城镇'},
+              ]},
+              {id: 3033, name: '台北市', district: [
+                {id: 3042, name: '城镇'},
+              ]},
+              {id: 3034, name: '基隆市', district: [
+                {id: 3043, name: '城镇'},
+              ]},
+              {id: 3035, name: '新竹市', district: [
+                {id: 3044, name: '城镇'},
+              ]},
+              {id: 3036, name: '嘉义市', district: [
+                {id: 3045, name: '城镇'},
+              ]},
           ]}
       ],
       areaInfo:{

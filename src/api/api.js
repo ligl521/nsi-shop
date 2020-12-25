@@ -78,6 +78,9 @@ export const createCardOrder = p => post('/order/create_cart.do', p)
 // 返回购物车列表
 export const getCartList = p => get('/order/get_order_cart_list.do', p)
 
+//发票提交申请验证是否存在
+export const getCheckInvoice = p => get('/Invoice/check_invoice.do', p)
+
 // 创建发票
 export const createInvoice = p => post('/Invoice/ShopInvoiceCreate.do', p)
 // 推荐图书或书籍

@@ -33,10 +33,37 @@ let weiChatInit = {
             })
         })
     },
+
+    // 微信配置config 测试
+  wxConfig02(params_url) {
+      if (window.location.href.indexOf("from") != -1) {
+        params_url = window.location.href;
+      }
+      axios({
+        method: "post",
+        url: '/CommonApi/WxShare.do',
+        params: {
+          // url: window.location.href
+          URL: params_url
+        }
+      }).then((res) => {
+        let data = res.data.data
+        // let data = JSON.parse(res.data.split('(')[1].split(')')[0])
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: data.appId, // 必填，公众号的唯一标识
+          timestamp: data.timestamp, // 必填，生成签名的时间戳
+          nonceStr: data.nonceStr, // 必填，生成签名的随机串
+          signature: data.signature, // 必填，签名，见附录1
+          jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        })
+      })
+    },
     //wx.ready
     wxReady(wxShareInfo) {
         // 发送后台微信配置
-        this.wxConfig()
+        // this.wxConfig()
+        this.wxConfig02(wxShareInfo.href);
 
         // 分享给朋友
         wx.ready(() => {
