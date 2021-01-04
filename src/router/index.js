@@ -8,6 +8,7 @@ import detailPage from '@/pages/detailPage'
 import detailCourse from '@/components/coursePage/detailCourse'
 import orderPage from '@/pages/order'
 import addressPage from '@/pages/address'
+import addressPage1 from '@/pages/address1'
 import searchResultPage from '@/pages/searchResult'
 import editAddressPage from '@/components/address/editAddress'
 import createAddressPage from '@/components/address/createAddress'
@@ -109,6 +110,10 @@ export default new Router({
             path: '/manageAddress',
             name: 'manageAddress',
             component: addressPage
+        }, {
+            path: '/manageAddress1',
+            name: 'manageAddress1',
+            component: addressPage1
         }, {
             path: '/editAddress',
             component: editAddressPage

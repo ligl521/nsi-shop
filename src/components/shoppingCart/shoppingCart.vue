@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import {getAddress,updateCart,lockCart,createCardOrder} from '@/api/api'
+import {getAddress,updateCart,lockCart,createCardOrder,detail} from '@/api/api'
 import {Debounce,miniProPayInfo} from '@/assets/js/common'
 export default {
     data() {
@@ -71,12 +71,13 @@ export default {
             addressDetail:'',
             addressVal:'',
             totalPrice:'',
-            goodsLength:''
+            goodsLength:'',
+            id:'',
         }
     },
     methods:{
         manageAddress(){
-            this.$router.push({path:'/manageAddress'})
+            this.$router.push({path:'/manageAddress1'})
         },
         editAddress(){
             this.$router.push({path:'/createAddress'})
@@ -88,29 +89,55 @@ export default {
             history.back(-1)
         },
         getAddressInfo(){
-            getAddress({
+        if(this.$route.query.id == undefined){
+           getAddress({
                 wechatId:localStorage.getItem('openId'),
                 'unionId':localStorage.getItem('unionid'),
-                // wechatId:'oCUylv0A1A2hO9JNaCNhVom8guLE'
+                // wechatId:"oCUylv0FJIONOqXfwVbglOBKnuuQ",
+                // unionId:"onusUvxD4que5bOb5l4hw9VLGnsY"
             }).then(res=>{
                 this.loading=false
-                this.hasNoAddress=false
                 // 0成功 1失败
+                console.log(res.data)
                 let code=res.code
-                let receiver=res.data
-                // console.log(res.data.data)
+                let receiver=res.data[0]
                 if(code===0){
+                    this.hasNoAddress=false
+                    this.id=receiver.id
                     this.name=receiver.receivename
                     this.phoneVal=receiver.receivephone
                     this.province=receiver.receivearea01
                     this.city=receiver.receivearea02
                     this.addressDetail=receiver.receivearea03
                     this.addressVal=this.province+' '+this.city+' '+this.addressDetail
-                    // localStorage.setItem("name",this.name)
+                    localStorage.setItem("name",this.name)
                 }else{
                     this.hasNoAddress=true
                 }
             })
+        }else{
+         detail({
+             id:this.$route.query.id
+            }).then(res=>{
+                this.loading=false
+                console.log(res)
+                console.log(res.data)
+                // 0成功 1失败
+                let code=res.code
+                let receiver=res.data
+                if(code==0){
+                    this.hasNoAddress=false
+                    this.id=receiver.id
+                    this.name=receiver.receivename
+                    this.phoneVal=receiver.receivephone
+                    this.province=receiver.receivearea01
+                    this.city=receiver.receivearea02
+                    this.addressDetail=receiver.receivearea03
+                    this.addressVal=this.province+' '+this.city+' '+this.addressDetail
+                    localStorage.setItem("name",this.name)
+                }else{}
+            })
+        }
         },
         handleChange(value) {
             console.log(value);
@@ -207,6 +234,7 @@ export default {
                                 productName:"购物车",
                                 productType:"购物车",
                                 quantity:1,
+                                // addressId:1,
                                 payment:totalfee,
                                 totalPrice:totalfee
                             }).then((res)=>{

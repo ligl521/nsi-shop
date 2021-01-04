@@ -64,7 +64,8 @@ export default {
             goodsName:'',
             goodsPrice:'',
             goodsPic:'',
-            loading:true
+            loading:true,
+            id:''
         }
     },
     created(){
@@ -108,6 +109,7 @@ export default {
                 data.append('quantity', num);
                 data.append('buyerMessage', buyerMessage);
                 data.append('productType', '书店');
+                // data.append('addressId', this.id);
                 this.axios({
                     method:'post',
                     url:'/order/create.do',
@@ -219,6 +221,7 @@ export default {
                 let receiver=res.data.data[0]
                 console.log(res.data.data)
                 if(code===0){
+                    this.id=receiver.id
                     this.name=receiver.receivename
                     this.phoneVal=receiver.receivephone
                     this.province=receiver.receivearea01
@@ -242,6 +245,7 @@ export default {
                 let code=res.code
                 let receiver=res.data
                 if(code==0){
+                    this.id=receiver.id
                     this.name=receiver.receivename
                     this.phoneVal=receiver.receivephone
                     this.province=receiver.receivearea01

@@ -21,6 +21,7 @@ Vue.prototype.axios = axios
 
 // 罗振
 //  axios.defaults.baseURL = "http://192.168.0.102:8080/nsi-1.0"
+    // axios.defaults.baseURL ="http://high.natapp1.cc/nsi-1.0"
 
 // 生产
 // axios.defaults.baseURL = "http://data.xinxueshuo.cn/nsi-1.0"
