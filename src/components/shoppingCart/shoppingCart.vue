@@ -234,7 +234,7 @@ export default {
                                 productName:"购物车",
                                 productType:"购物车",
                                 quantity:1,
-                                // addressId:1,
+                                addressId:this.id,
                                 payment:totalfee,
                                 totalPrice:totalfee
                             }).then((res)=>{

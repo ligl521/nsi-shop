@@ -6,7 +6,7 @@
             <p class="text-center">暂无开票记录</p>
         </div>
         <div class="hasAddress" v-else >
-            <div class="addressInfo" v-for="(item,index) in list" :key="index" >
+            <div class="addressInfo" @click="invoiceDetail(item.id)" v-for="(item,index) in list" :key="index" >
                 <div class="top">
                     <span class="left">电子发票</span>
                     <span class="min">{{item.createTime}}</span>
@@ -66,12 +66,16 @@ export default {
         refresh(){
           this.getMyCourse()
         },
+        invoiceDetail(e){
+           this.$router.push({path:'/invoiceDetail',query:{id:e}})
+        },
         getMyCourse(){
           console.log(localStorage.getItem('openId'))
           invoiceHistory({
                 pageNum:1,
                 pageSize:10,
                 wechatId:localStorage.getItem('openId'),
+                // wechatId:"oCUylv0FJIONOqXfwVbglOBKnuuQ",
             }).then((res)=>{
                 if(res.data.list.length>0){
                     this.hasNoAddress=false

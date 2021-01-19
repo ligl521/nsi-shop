@@ -129,7 +129,7 @@ export default {
         }).then(res => {
           if(res.code == "1"){
             this.$message({
-              message: '您也提交发票申请,请耐心等候',
+              message: '发票已提交申请,请耐心等候',
               type: 'error',
               duration:3000
             })
