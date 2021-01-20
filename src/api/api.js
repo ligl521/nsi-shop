@@ -91,3 +91,5 @@ export const apiError = p => post('/CommonApi/ErrorNotify.do', p)
 export const detail = p => get('/ShopAddress/detail.do', p)
 // 开票记录
 export const invoiceHistory = p => get('/Invoice/get_invoice_history.do', p)
+// 开票详情
+export const invoiceDetail = p => get('/Invoice/detail.do', p)

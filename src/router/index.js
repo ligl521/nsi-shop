@@ -36,6 +36,7 @@ import cartPage from '@/components/shoppingCart/shoppingCart'
 import invoicePage from '@/components/invoice/invoice'
 import offlineCoursePage from '@/components/coursePage/offlineCourse'
 import record from '@/pages/record'
+import invoiceDetail from '@/pages/invoiceDetail'
 
 Vue.use(Router)
 
@@ -187,6 +188,10 @@ export default new Router({
             path: '/record',
             name: 'record',
             component: record
+        }, {
+            path: '/invoiceDetail',
+            name: 'invoiceDetail',
+            component: invoiceDetail
         }
     ]
 })
