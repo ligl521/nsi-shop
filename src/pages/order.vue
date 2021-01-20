@@ -97,6 +97,7 @@ export default {
                 this.$message.error('请填加地址');
             }else{
                 let that =this
+                console.log(this.id + 'aaaaaaaa')
                 let name=localStorage.getItem("name")
                 let goodsId=localStorage.getItem("goodsId")
                 let openId=localStorage.getItem('openId')
@@ -109,7 +110,7 @@ export default {
                 data.append('quantity', num);
                 data.append('buyerMessage', buyerMessage);
                 data.append('productType', '书店');
-                // data.append('addressId', this.id);
+                data.append('addressId', this.id);
                 this.axios({
                     method:'post',
                     url:'/order/create.do',
@@ -212,15 +213,17 @@ export default {
                 url: '/ShopAddress/getList.do',
                 params:{
                     wechatId:storage.openId
+                    // wechatId:"oCUylv0FJIONOqXfwVbglOBKnuuQ",
+                // unionId:"onusUvxD4que5bOb5l4hw9VLGnsY"
                 }
             }).then((res)=>{
                 this.loading=false
-                this.hasNoAddress=false
                 // 0成功 1失败
                 let code=res.data.code
+                console.log(res.data)
                 let receiver=res.data.data[0]
-                console.log(res.data.data)
                 if(code===0){
+                    this.hasNoAddress=false
                     this.id=receiver.id
                     this.name=receiver.receivename
                     this.phoneVal=receiver.receivephone
@@ -237,14 +240,13 @@ export default {
          detail({
              id:this.$route.query.id
             }).then(res=>{
-                console.log(res)
                 console.log(res.data)
                 this.loading=false
-                this.hasNoAddress=false
                 // 0成功 1失败
                 let code=res.code
                 let receiver=res.data
                 if(code==0){
+                    this.hasNoAddress=false
                     this.id=receiver.id
                     this.name=receiver.receivename
                     this.phoneVal=receiver.receivephone
@@ -253,7 +255,9 @@ export default {
                     this.addressDetail=receiver.receivearea03
                     this.addressVal=this.province+' '+this.city+' '+this.addressDetail
                     localStorage.setItem("name",this.name)
-                }else{}
+                }else{
+                    this.hasNoAddress=true
+                }
             })
         }
     },
