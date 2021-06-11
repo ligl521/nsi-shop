@@ -143,6 +143,8 @@ export default {
                     margin: 0;
                     font-size: 14px;
                     color: rgb(88, 88, 88);
+                    background-color: #fff;
+                    padding: 0;
                     .phone{
                         margin-left: 20px;
                     }

@@ -212,9 +212,8 @@ export default {
                 method:"get",
                 url: '/ShopAddress/getList.do',
                 params:{
-                    wechatId:storage.openId
+                    wechatId:localStorage.getItem('openId'),
                     // wechatId:"oCUylv0FJIONOqXfwVbglOBKnuuQ",
-                // unionId:"onusUvxD4que5bOb5l4hw9VLGnsY"
                 }
             }).then((res)=>{
                 this.loading=false
@@ -341,6 +340,8 @@ export default {
                 }
                 .address{
                     position: relative;
+                    background-color: #fff;
+                    padding: 0;  
                     .moreAddress{
                         position: absolute;
                         right: -20px;

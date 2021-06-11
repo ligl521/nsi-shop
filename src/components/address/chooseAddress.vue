@@ -1118,7 +1118,7 @@ export default {
                   {id: 878, name: '乐清市'}
               ]},
               {id: 90, name: '嘉兴市', district: [
-                  {id: 879, name: '秀城区'},
+                  {id: 879, name: '南湖区'},
                   {id: 880, name: '秀洲区'},
                   {id: 881, name: '嘉善县'},
                   {id: 882, name: '海盐县'},

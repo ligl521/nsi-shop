@@ -29,11 +29,15 @@
                         <p class="myOrderLogo orderState text-center"><span class="iconfont icon-shouhuo"></span><em class="orderCount" v-if="orderState.SHIPPED>0">{{orderState.SHIPPED}}</em></p>
                         <p class="myOrder text-center">待收货</p>
                     </router-link>
-                    <router-link v-if="hasNoAddress" tag="div" to="/createAddress" class="orderItme">
+                    <!-- <router-link v-if="hasNoAddress" tag="div" to="/createAddress" class="orderItme">
                         <p class="myOrderLogo text-center"><span class="iconfont icon-Group-"></span></p>
                         <p class="myOrder text-center">地址管理</p>
-                    </router-link>
-                    <router-link v-else tag="div" to="/editAddress" class="orderItme">
+                    </router-link> -->
+                    <!-- <router-link v-else tag="div" to="/editAddress" class="orderItme">
+                        <p class="myOrderLogo text-center"><span class="iconfont icon-Group-"></span></p>
+                        <p class="myOrder text-center">地址管理</p>
+                    </router-link> -->
+                    <router-link tag="div" to="/manageAddress" class="orderItme">
                         <p class="myOrderLogo text-center"><span class="iconfont icon-Group-"></span></p>
                         <p class="myOrder text-center">地址管理</p>
                     </router-link>
