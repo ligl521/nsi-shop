@@ -4,7 +4,7 @@
         <ul class="orderNav">
             <router-link tag="li" exact to="/orderState/all">全部</router-link>
             <router-link tag="li" to="/orderState/wait">待付款</router-link>
-            <router-link tag="li" to="/orderState/send">待发货</router-link>
+            <router-link tag="li" to="/orderState/send">已付款</router-link>
             <router-link tag="li" to="/orderState/confirm">待收货</router-link>
             <router-link tag="li" to="/orderState/success">交易成功</router-link>
         </ul>

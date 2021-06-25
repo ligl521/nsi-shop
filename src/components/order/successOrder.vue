@@ -3,7 +3,9 @@
         <!-- <h4 class="title"><span class="iconfont icon-zuojiantou goBack" @click="goBack()"></span>全部订单</h4> -->
         <div class="orderItem" v-for="(item,index) in orderItem" v-if="item.productType=='书店'&&item.statusDesc==='订单完成'">
             <h5 class="goodsTitle">
-                <span class="iconfont icon-dianpu goodsLogo"></span><span class="goodsShop">{{item.product.goodsPress}}</span>
+                <span class="iconfont icon-dianpu goodsLogo"></span>
+                <!-- <span class="goodsShop">{{item.product.goodsPress}}</span> -->
+                <span class="goodsShop">订单号：{{item.orderNo}}</span>
                 <span class="goodsState">{{item.statusDesc}}</span>
             </h5>
             <div class="goodsDesc" @click="toDetail(item.orderNo)">
